@@ -3,6 +3,7 @@ const btnMobile = document.getElementById("btn-mobile");
 const header = document.querySelector(".header");
 const btnShortenLink = document.getElementById("btnShortenLink");
 const shortenLinkDisplay = document.querySelector(".shorten-links");
+const inputWrapper = document.querySelector(".input-wrapper");
 
 // Functions
 const ShortenLink = (link) => {
@@ -10,7 +11,7 @@ const ShortenLink = (link) => {
     .then((response) => response.json())
     .then((data) => {
       if (data.error_code) {
-        alert("Invalid Link");
+        inputWrapper.classList.add("error");
       }
 
       let div = document.createElement("div");
@@ -43,8 +44,13 @@ btnMobile.addEventListener("click", () => {
 });
 
 btnShortenLink.addEventListener("click", () => {
-  const inputLink = document.getElementById("linkInput").value;
-  ShortenLink(inputLink);
+  let inputLink = document.getElementById("linkInput");
+  if (ShortenLink(inputLink.value) != undefined) {
+    ShortenLink(inputLink);
+    inputWrapper.classList.remove("error");
+  }
+  inputWrapper.classList.remove("error");
+  inputLink.value = "";
 });
 
 document.addEventListener("click", (e) => {
@@ -52,5 +58,7 @@ document.addEventListener("click", (e) => {
 
   if (target.id === "copyButton") {
     navigator.clipboard.writeText(target.value);
+    target.textContent = "Copied!";
+    target.style.backgroundColor = "hsl(257, 27%, 26%)";
   }
 });

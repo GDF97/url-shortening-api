@@ -178,14 +178,13 @@ body {
 
 .short-link-input-wrapper {
   width: 100%;
-  height: 10rem;
+  height: fit-content;
   padding: 3rem;
   background-image: url(../images/bg-shorten-desktop.svg);
   background-color: var(--Dark-Violet);
   background-size: cover;
   background-position: center;
   display: flex;
-  align-items: center;
   flex-wrap: wrap;
   gap: 3rem;
   z-index: 1;
@@ -232,6 +231,34 @@ body {
   align-items: center;
   gap: 1rem;
   flex-wrap: wrap;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+#errorMessage {
+  display: none;
+  color: var(--Red);
+}
+
+.input-wrapper.error #linkInput {
+  border: 3px solid var(--Red);
+}
+
+.input-wrapper.error #errorMessage {
+  display: flex;
+}
+
+.input-wrapper.error #linkInput:not(:placeholder-shown) {
+  border: none;
+}
+
+.input-wrapper.error #linkInput:not(:placeholder-shown) ~ #errorMessage {
+  display: none;
 }
 
 .link-shortened-wrapper .wrapper {

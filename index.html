@@ -62,7 +62,10 @@
 
     <section class="shorter-links">
       <article class="short-link-input-wrapper">
-        <input type="text" id="linkInput" placeholder="Shorten a link here" />
+        <span class="input-wrapper">
+          <input type="text" id="linkInput" placeholder="Shorten a link here" />
+          <p id="errorMessage">Please add a valid link</p>
+        </span>
         <button id="btnShortenLink">Shorten it!</button>
       </article>
       <article class="shorten-links"></article>
